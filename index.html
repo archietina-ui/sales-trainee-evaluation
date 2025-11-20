@@ -697,6 +697,7 @@
       return values.map(escapeCsvValue).join(",") + "\n";
     }
 
+    // Submit single evaluation (no download yet)
     function handleSubmit(event) {
       event.preventDefault();
       const form = event.target;
@@ -766,6 +767,7 @@
       statusEl.classList.add("success");
     }
 
+    // Download one CSV with all evaluations
     function downloadAllEvaluations() {
       const statusEl = document.getElementById("status");
       statusEl.textContent = "";
