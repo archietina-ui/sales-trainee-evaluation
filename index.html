@@ -423,217 +423,218 @@
     </form>
   </div>
 
- 
-  const trainees = [
-    {
-      "Employee Name": "Dharmender",
-      "Emp ID": 8899,
-      "Email ID": "dharmender.k@99acres.com",
-      "Location": "Noida",
-      "Branch": "Noida A-88",
-      "Mentor": "Nitin Kumar",
-      "Buddy": "Shashank Verma"
-    },
-    {
-      "Employee Name": "M Sanjiv Gandhi",
-      "Emp ID": 9767,
-      "Email ID": "m.gandhi@99acres.com",
-      "Location": "Chennai",
-      "Branch": "Chennai West",
-      "Mentor": "Jeevan Prakash",
-      "Buddy": "Parthasarthi"
-    },
-    {
-      "Employee Name": "Sarath Babu Kamala Kannan",
-      "Emp ID": 16698,
-      "Email ID": "sarath.kannan@99Acres.com",
-      "Location": "Chennai",
-      "Branch": "Chennai South",
-      "Mentor": "Swaminathan",
-      "Buddy": "Vinoth Kumar"
-    },
-    {
-      "Employee Name": "Tippu Sultan",
-      "Emp ID": 26504,
-      "Email ID": "sultan.tippu@99Acres.com",
-      "Location": "Bangalore",
-      "Branch": "Bangalore N801 To 802",
-      "Mentor": "Kamalesh Kumar s",
-      "Buddy": "MOHAMMED FOUZAN"
-    },
-    {
-      "Employee Name": "Vakiti Rahul Kishore",
-      "Emp ID": 18607,
-      "Email ID": "vakiti.kishore@99Acres.com",
-      "Location": "Hyderabad",
-      "Branch": "Hyderabad,Vasavi Grand",
-      "Mentor": "Mallipudi Virendranath",
-      "Buddy": "V Kalyan Kumar"
-    },
-    {
-      "Employee Name": "Saikath Sen",
-      "Emp ID": 14430,
-      "Email ID": "saikath.sen@99acres.com",
-      "Location": "Kolkata",
-      "Branch": "Kolkata Krishna Building 1",
-      "Mentor": "Jit Banerjee",
-      "Buddy": "Subhadip Das"
-    },
-    {
-      "Employee Name": "Surender Singh",
-      "Emp ID": 19029,
-      "Email ID": "singh.surender@99Acres.com",
-      "Location": "Gurgaon",
-      "Branch": "Gurgaon Sector-32",
-      "Mentor": "Kunal Sharma",
-      "Buddy": "Vinay Thakur"
-    },
-    {
-      "Employee Name": "Shailendra Singh",
-      "Emp ID": 8937,
-      "Email ID": "shailender.singh@99acres.com",
-      "Location": "Gurgaon",
-      "Branch": "Gurgaon Sector-32",
-      "Mentor": "Kunal Sharma",
-      "Buddy": "Ritik Jain"
-    },
-    {
-      "Employee Name": "Sunil Kumar",
-      "Emp ID": 15238,
-      "Email ID": "sunil.kumar@99acres.com",
-      "Location": "Gurgaon",
-      "Branch": "Gurgaon Sector-74 A",
-      "Mentor": "Trdev Karan",
-      "Buddy": "Souvik Mandal"
-    },
-    {
-      "Employee Name": "Amandeep Singh",
-      "Emp ID": 8885,
-      "Email ID": "amandeep.s@99acres.com",
-      "Location": "New Delhi",
-      "Branch": "New Delhi Pitampura",
-      "Mentor": "Manmohan Goswami",
-      "Buddy": "Vikrant Parashar"
-    },
-    {
-      "Employee Name": "Jitendra Singh",
-      "Emp ID": 8914,
-      "Email ID": "jitendra.singh@99acres.com",
-      "Location": "Gurgaon",
-      "Branch": "Gurgaon Sector-32",
-      "Mentor": "Kunal Sharma",
-      "Buddy": "AMIT CHAWLA"
-    },
-    {
-      "Employee Name": "Sunil Kumar",
-      "Emp ID": 8945,
-      "Email ID": "sunil.kumar1@99acres.com",
-      "Location": "Gurgaon",
-      "Branch": "Noida A-88",
-      "Mentor": "Nitin Kumar",
-      "Buddy": "Aman Mishra"
-    },
-    {
-      "Employee Name": "Abhishek",
-      "Emp ID": 9862,
-      "Email ID": "abhishek.a@99acres.com",
-      "Location": "New Delhi",
-      "Branch": "New Delhi Pitampura",
-      "Mentor": "Manmohan Goswami",
-      "Buddy": "Vikrant Parashar"
-    },
-    {
-      "Employee Name": "Atul Ramchandra Mali",
-      "Emp ID": 8856,
-      "Email ID": "atul.mali@99acres.com",
-      "Location": "Mumbai",
-      "Branch": "Mumbai Andheri - J B Nagar",
-      "Mentor": "Nitesh Mewani",
-      "Buddy": "Akash Varma"
-    },
-    {
-      "Employee Name": "Sunny Dayal Pandey",
-      "Emp ID": 11723,
-      "Email ID": "sunny.pandey@99acres.com",
-      "Location": "Mumbai",
-      "Branch": "Mumbai CBD Belapur",
-      "Mentor": "Atul Raikwar",
-      "Buddy": "Shrijay Baggal"
-    },
-    {
-      "Employee Name": "Jignesh Himmat Rathod",
-      "Emp ID": 12242,
-      "Email ID": "jignesh.rathod@99acres.com",
-      "Location": "Mumbai",
-      "Branch": "Mumbai Andheri - J B Nagar",
-      "Mentor": "Nitesh Mewani",
-      "Buddy": "Amit Kawle"
-    },
-    {
-      "Employee Name": "Firoz Imran Khan",
-      "Emp ID": 15951,
-      "Email ID": "firoz.khan@99acres.com",
-      "Location": "Mumbai",
-      "Branch": "Mumbai Andheri - J B Nagar",
-      "Mentor": "Nitesh Mewani",
-      "Buddy": "Vishal Chauhan"
-    },
-    {
-      "Employee Name": "Vishal Mhaske",
-      "Emp ID": 9917,
-      "Email ID": "vishal.m@99acres.com",
-      "Location": "Pune",
-      "Branch": "Pune Viman Nagar",
-      "Mentor": "Rupesh Sabale",
-      "Buddy": "Kumar Abhishek"
-    },
-    {
-      "Employee Name": "Akshay Sadanand Swami",
-      "Emp ID": 17942,
-      "Email ID": "swami.akshay@99acres.com",
-      "Location": "Pune",
-      "Branch": "Pune Viman Nagar",
-      "Mentor": "Shashi Ranjan",
-      "Buddy": "Mahaveer Kothari"
-    },
-    {
-      "Employee Name": "Upender Kumar Pal",
-      "Emp ID": 8940,
-      "Email ID": "upender.pal@99acres.com",
-      "Location": "New Delhi",
-      "Branch": "South Delhi Office",
-      "Mentor": "Ishan Tiwari",
-      "Buddy": "Vishveshwar Singh"
-    },
-    {
-      "Employee Name": "Rakesh Kumar",
-      "Emp ID": 8949,
-      "Email ID": "rakesh.kumar@99acres.com",
-      "Location": "New Delhi",
-      "Branch": "Noida A-88",
-      "Mentor": "Nitin Kumar",
-      "Buddy": "Shashank Verma"
-    },
-    {
-      "Employee Name": "Shekhar",
-      "Emp ID": 18641,
-      "Email ID": "shekhar@99Acres.com",
-      "Location": "Noida",
-      "Branch": "Ghaziabad Office",
-      "Mentor": "Manish Sharma",
-      "Buddy": "Aditya Gupta"
-    }
-  ];
+  <script>
+    // Hardcoded trainee data
+    const trainees = [
+      {
+        "Employee Name": "Dharmender",
+        "Emp ID": 8899,
+        "Email ID": "dharmender.k@99acres.com",
+        "Location": "Noida",
+        "Branch": "Noida A-88",
+        "Mentor": "Nitin Kumar",
+        "Buddy": "Shashank Verma"
+      },
+      {
+        "Employee Name": "M Sanjiv Gandhi",
+        "Emp ID": 9767,
+        "Email ID": "m.gandhi@99acres.com",
+        "Location": "Chennai",
+        "Branch": "Chennai West",
+        "Mentor": "Jeevan Prakash",
+        "Buddy": "Parthasarthi"
+      },
+      {
+        "Employee Name": "Sarath Babu Kamala Kannan",
+        "Emp ID": 16698,
+        "Email ID": "sarath.kannan@99Acres.com",
+        "Location": "Chennai",
+        "Branch": "Chennai South",
+        "Mentor": "Swaminathan",
+        "Buddy": "Vinoth Kumar"
+      },
+      {
+        "Employee Name": "Tippu Sultan",
+        "Emp ID": 26504,
+        "Email ID": "sultan.tippu@99Acres.com",
+        "Location": "Bangalore",
+        "Branch": "Bangalore N801 To 802",
+        "Mentor": "Kamalesh Kumar s",
+        "Buddy": "MOHAMMED FOUZAN"
+      },
+      {
+        "Employee Name": "Vakiti Rahul Kishore",
+        "Emp ID": 18607,
+        "Email ID": "vakiti.kishore@99Acres.com",
+        "Location": "Hyderabad",
+        "Branch": "Hyderabad,Vasavi Grand",
+        "Mentor": "Mallipudi Virendranath",
+        "Buddy": "V Kalyan Kumar"
+      },
+      {
+        "Employee Name": "Saikath Sen",
+        "Emp ID": 14430,
+        "Email ID": "saikath.sen@99acres.com",
+        "Location": "Kolkata",
+        "Branch": "Kolkata Krishna Building 1",
+        "Mentor": "Jit Banerjee",
+        "Buddy": "Subhadip Das"
+      },
+      {
+        "Employee Name": "Surender Singh",
+        "Emp ID": 19029,
+        "Email ID": "singh.surender@99Acres.com",
+        "Location": "Gurgaon",
+        "Branch": "Gurgaon Sector-32",
+        "Mentor": "Kunal Sharma",
+        "Buddy": "Vinay Thakur"
+      },
+      {
+        "Employee Name": "Shailendra Singh",
+        "Emp ID": 8937,
+        "Email ID": "shailender.singh@99acres.com",
+        "Location": "Gurgaon",
+        "Branch": "Gurgaon Sector-32",
+        "Mentor": "Kunal Sharma",
+        "Buddy": "Ritik Jain"
+      },
+      {
+        "Employee Name": "Sunil Kumar",
+        "Emp ID": 15238,
+        "Email ID": "sunil.kumar@99acres.com",
+        "Location": "Gurgaon",
+        "Branch": "Gurgaon Sector-74 A",
+        "Mentor": "Trdev Karan",
+        "Buddy": "Souvik Mandal"
+      },
+      {
+        "Employee Name": "Amandeep Singh",
+        "Emp ID": 8885,
+        "Email ID": "amandeep.s@99acres.com",
+        "Location": "New Delhi",
+        "Branch": "New Delhi Pitampura",
+        "Mentor": "Manmohan Goswami",
+        "Buddy": "Vikrant Parashar"
+      },
+      {
+        "Employee Name": "Jitendra Singh",
+        "Emp ID": 8914,
+        "Email ID": "jitendra.singh@99acres.com",
+        "Location": "Gurgaon",
+        "Branch": "Gurgaon Sector-32",
+        "Mentor": "Kunal Sharma",
+        "Buddy": "AMIT CHAWLA"
+      },
+      {
+        "Employee Name": "Sunil Kumar",
+        "Emp ID": 8945,
+        "Email ID": "sunil.kumar1@99acres.com",
+        "Location": "Gurgaon",
+        "Branch": "Noida A-88",
+        "Mentor": "Nitin Kumar",
+        "Buddy": "Aman Mishra"
+      },
+      {
+        "Employee Name": "Abhishek",
+        "Emp ID": 9862,
+        "Email ID": "abhishek.a@99acres.com",
+        "Location": "New Delhi",
+        "Branch": "New Delhi Pitampura",
+        "Mentor": "Manmohan Goswami",
+        "Buddy": "Vikrant Parashar"
+      },
+      {
+        "Employee Name": "Atul Ramchandra Mali",
+        "Emp ID": 8856,
+        "Email ID": "atul.mali@99acres.com",
+        "Location": "Mumbai",
+        "Branch": "Mumbai Andheri - J B Nagar",
+        "Mentor": "Nitesh Mewani",
+        "Buddy": "Akash Varma"
+      },
+      {
+        "Employee Name": "Sunny Dayal Pandey",
+        "Emp ID": 11723,
+        "Email ID": "sunny.pandey@99acres.com",
+        "Location": "Mumbai",
+        "Branch": "Mumbai CBD Belapur",
+        "Mentor": "Atul Raikwar",
+        "Buddy": "Shrijay Baggal"
+      },
+      {
+        "Employee Name": "Jignesh Himmat Rathod",
+        "Emp ID": 12242,
+        "Email ID": "jignesh.rathod@99acres.com",
+        "Location": "Mumbai",
+        "Branch": "Mumbai Andheri - J B Nagar",
+        "Mentor": "Nitesh Mewani",
+        "Buddy": "Amit Kawle"
+      },
+      {
+        "Employee Name": "Firoz Imran Khan",
+        "Emp ID": 15951,
+        "Email ID": "firoz.khan@99acres.com",
+        "Location": "Mumbai",
+        "Branch": "Mumbai Andheri - J B Nagar",
+        "Mentor": "Nitesh Mewani",
+        "Buddy": "Vishal Chauhan"
+      },
+      {
+        "Employee Name": "Vishal Mhaske",
+        "Emp ID": 9917,
+        "Email ID": "vishal.m@99acres.com",
+        "Location": "Pune",
+        "Branch": "Pune Viman Nagar",
+        "Mentor": "Rupesh Sabale",
+        "Buddy": "Kumar Abhishek"
+      },
+      {
+        "Employee Name": "Akshay Sadanand Swami",
+        "Emp ID": 17942,
+        "Email ID": "swami.akshay@99acres.com",
+        "Location": "Pune",
+        "Branch": "Pune Viman Nagar",
+        "Mentor": "Shashi Ranjan",
+        "Buddy": "Mahaveer Kothari"
+      },
+      {
+        "Employee Name": "Upender Kumar Pal",
+        "Emp ID": 8940,
+        "Email ID": "upender.pal@99acres.com",
+        "Location": "New Delhi",
+        "Branch": "South Delhi Office",
+        "Mentor": "Ishan Tiwari",
+        "Buddy": "Vishveshwar Singh"
+      },
+      {
+        "Employee Name": "Rakesh Kumar",
+        "Emp ID": 8949,
+        "Email ID": "rakesh.kumar@99acres.com",
+        "Location": "New Delhi",
+        "Branch": "Noida A-88",
+        "Mentor": "Nitin Kumar",
+        "Buddy": "Shashank Verma"
+      },
+      {
+        "Employee Name": "Shekhar",
+        "Emp ID": 18641,
+        "Email ID": "shekhar@99Acres.com",
+        "Location": "Noida",
+        "Branch": "Ghaziabad Office",
+        "Mentor": "Manish Sharma",
+        "Buddy": "Aditya Gupta"
+      }
+    ];
 
-  function populateTraineeDropdown() {
-    const select = document.getElementById("traineeName");
-    trainees.forEach((t) => {
-      const option = document.createElement("option");
-      option.value = t["Employee Name"];
-      option.textContent = t["Employee Name"];
-      select.appendChild(option);
-    });
-  }
+    function populateTraineeDropdown() {
+      const select = document.getElementById("traineeName");
+      trainees.forEach((t) => {
+        const option = document.createElement("option");
+        option.value = t["Employee Name"];
+        option.textContent = t["Employee Name"];
+        select.appendChild(option);
+      });
+    }
 
     function onTraineeChange() {
       const select = document.getElementById("traineeName");
