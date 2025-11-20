@@ -2,430 +2,576 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sales Trainee Evaluation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sales Trainee Evaluation Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
     body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:#f3f6fa;
-      margin:0;
-      padding:20px;
+      margin: 0;
+      padding: 0;
+      background: #f4f5fb;
+      color: #222;
     }
-    .container {
-      max-width:1100px;
-      margin:auto;
-      background:white;
-      padding:30px;
-      border-radius:14px;
-      box-shadow:0 8px 30px rgba(0,0,0,0.08);
+
+    .page {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 24px 20px 40px;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
     }
+
     h1 {
-      text-align:center;
-      margin-top:0;
+      margin-top: 0;
+      font-size: 1.8rem;
+      text-align: center;
+      color: #111827;
     }
-    h2 {
-      margin-top:30px;
-      margin-bottom:10px;
+
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
     }
-    .grid-3 {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
-    @media (max-width:900px) {
-      .grid-3 { grid-template-columns:1fr; }
+
+    .section {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 16px 18px 18px;
+      background: #fbfcff;
     }
-    label.field-label {
-      font-weight:600;
-      margin-bottom:4px;
-      display:block;
-      color:#0f172a;
+
+    .section-header {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #111827;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    select, input, textarea {
-      width:100%;
-      padding:10px;
-      border:1px solid #d0d7e2;
-      border-radius:8px;
-      font-size:14px;
-      box-sizing:border-box;
+
+    .section-header span.badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: #e5f0ff;
+      color: #1d4ed8;
+      font-size: 0.8rem;
+      font-weight: 600;
     }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
     textarea {
-      min-height:80px;
-      resize:vertical;
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      background: #f9fafb;
     }
-    .readonly-box {
-      background:#f1f5f9;
-      padding:10px;
-      border-radius:8px;
-      min-height:42px;
-      border:1px solid #d0d7e2;
+
+    input[readonly] {
+      background: #eef2ff;
+      color: #4b5563;
     }
-    .form-item {
-      margin-bottom:4px;
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+      background: #ffffff;
     }
-    .radio-row label {
-      font-weight:400;
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
     }
-    button {
-      padding:12px 22px;
-      font-size:15px;
-      font-weight:600;
-      border:0;
-      border-radius:8px;
-      cursor:pointer;
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
     }
-    .btn-primary {
-      background:#0ea5a4;
-      color:white;
-      margin-right:10px;
+
+    .radio-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
     }
-    .btn-secondary {
-      background:#e2e8f0;
+
+    .radio-pill input[type="radio"] {
+      accent-color: #2563eb;
     }
-    table {
-      width:100%;
-      border-collapse:collapse;
-      margin-top:20px;
+
+    .radio-pill:hover {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.12);
     }
-    th, td {
-      border:1px solid #e2e8f0;
-      padding:8px;
-      font-size:13px;
+
+    .helper {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 2px;
     }
-    th {
-      background:#f8fafc;
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
+      font-size: 0.94rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(37, 99, 235, 0.26);
+      opacity: 0.96;
+    }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 16px rgba(37, 99, 235, 0.26);
+    }
+
+    .note {
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .status {
+      margin-top: 6px;
+      font-size: 0.8rem;
+    }
+
+    .status.success {
+      color: #15803d;
+    }
+
+    .status.error {
+      color: #b91c1c;
+    }
+
+    .pill-legend {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    .required-star {
+      color: #dc2626;
+      margin-left: 2px;
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        margin: 16px;
+        padding: 16px 14px 26px;
+        border-radius: 12px;
+      }
+      h1 {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
 <body>
-<div class="container">
+  <div class="page">
+    <h1>Sales Trainee Evaluation</h1>
+    <p class="subtitle">
+      Select a trainee to auto-fill their details, complete the evaluation, and download a ready-to-share CSV file.
+    </p>
 
-  <h1>Sales Trainee Evaluation</h1>
-  <p style="text-align:center;color:#475569">
-    Select a trainee to auto-fill their details, complete the evaluation, and download a CSV.
-  </p>
+    <form id="evaluationForm">
+      <!-- Trainee details -->
+      <section class="section">
+        <div class="section-header">
+          <span class="badge">1</span>
+          <span>Trainee &amp; Evaluator Details</span>
+        </div>
+        <div class="grid-2">
+          <div>
+            <label for="traineeName">Trainee Name<span class="required-star">*</span></label>
+            <select id="traineeName" name="traineeName" required>
+              <option value="">Select trainee</option>
+            </select>
+            <div class="helper">Choosing a name will auto-fill the fields below.</div>
+          </div>
 
-  <h2>1. Trainee &amp; Evaluator Details</h2>
-  <div class="grid-3">
-    <div>
-      <label class="field-label">Trainee Name *</label>
-      <select id="traineeSelect">
-        <option value="">Select trainee</option>
-      </select>
-    </div>
+          <div>
+            <label for="employeeId">Employee ID</label>
+            <input type="text" id="employeeId" name="employeeId" readonly />
+          </div>
 
-    <div>
-      <label class="field-label">Employee ID</label>
-      <div id="empid" class="readonly-box">—</div>
-    </div>
+          <div>
+            <label for="branch">Branch</label>
+            <input type="text" id="branch" name="branch" readonly />
+          </div>
 
-    <div>
-      <label class="field-label">Branch</label>
-      <div id="branch" class="readonly-box">—</div>
-    </div>
+          <div>
+            <label for="mentor">Mentor</label>
+            <input type="text" id="mentor" name="mentor" readonly />
+          </div>
 
-    <div>
-      <label class="field-label">Mentor</label>
-      <div id="mentor" class="readonly-box">—</div>
-    </div>
+          <div>
+            <label for="buddy">Buddy</label>
+            <input type="text" id="buddy" name="buddy" readonly />
+          </div>
 
-    <div>
-      <label class="field-label">Buddy</label>
-      <div id="buddy" class="readonly-box">—</div>
-    </div>
+          <div>
+            <label for="evaluator">Evaluator Name<span class="required-star">*</span></label>
+            <input type="text" id="evaluator" name="evaluator" required placeholder="Enter your name" />
+          </div>
+        </div>
+      </section>
 
-    <div>
-      <label class="field-label">Evaluator Name *</label>
-      <input id="evaluator" placeholder="Enter your name" />
-    </div>
+      <!-- Parameters -->
+      <section class="section">
+        <div class="section-header">
+          <span class="badge">2</span>
+          <span>Performance Parameters</span>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label for="avgMeetings">
+              How many average meetings was the trainee able to do every day?<span class="required-star">*</span>
+            </label>
+            <input type="number" id="avgMeetings" name="avgMeetings" min="0" step="0.1" required />
+            <div class="helper">Use a whole number or decimal (e.g., 3 or 3.5).</div>
+          </div>
+        </div>
+
+        <div>
+          <label>
+            Did the trainee meet the meetings target?<span class="required-star">*</span>
+          </label>
+          <div class="radio-group">
+            <label class="radio-pill">
+              <input type="radio" name="metTarget" value="Yes" required />
+              <span>Yes</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="metTarget" value="No" />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label>
+            Was the trainee able to identify sales opportunity during meetings?<span class="required-star">*</span>
+          </label>
+          <div class="radio-group">
+            <label class="radio-pill">
+              <input type="radio" name="identifiedOpp" value="Yes" required />
+              <span>Yes</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="identifiedOpp" value="No" />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label>
+            Was the trainee able to convert the opportunity into actual sales?<span class="required-star">*</span>
+          </label>
+          <div class="radio-group">
+            <label class="radio-pill">
+              <input type="radio" name="convertedOpp" value="Yes" required />
+              <span>Yes</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="convertedOpp" value="No" />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label>
+            Is the trainee aligned to do sales in the long run?<span class="required-star">*</span>
+          </label>
+          <div class="radio-group">
+            <label class="radio-pill">
+              <input type="radio" name="alignedLongTerm" value="Yes" required />
+              <span>Yes</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="alignedLongTerm" value="No" />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Qualitative feedback -->
+      <section class="section">
+        <div class="section-header">
+          <span class="badge">3</span>
+          <span>Qualitative Feedback</span>
+        </div>
+        <div>
+          <label for="strengths">Key Strengths:</label>
+          <textarea id="strengths" name="strengths" placeholder="E.g., prospecting, communication, CRM hygiene..."></textarea>
+        </div>
+        <div style="margin-top: 10px;">
+          <label for="opportunities">Key Opportunity Areas:</label>
+          <textarea id="opportunities" name="opportunities" placeholder="E.g., objection handling, negotiation..."></textarea>
+        </div>
+      </section>
+
+      <!-- Final recommendation -->
+      <section class="section">
+        <div class="section-header">
+          <span class="badge">4</span>
+          <span>Final Recommendation (select one)</span>
+        </div>
+        <div class="radio-group">
+          <label class="radio-pill">
+            <input type="radio" name="finalRecommendation" value="Ready for Sales Role" required />
+            <span>Ready for Sales Role</span>
+          </label>
+          <label class="radio-pill">
+            <input type="radio" name="finalRecommendation" value="Ready with some support" />
+            <span>Ready with some support</span>
+          </label>
+          <label class="radio-pill">
+            <input type="radio" name="finalRecommendation" value="Needs further training" />
+            <span>Needs further training</span>
+          </label>
+          <label class="radio-pill">
+            <input type="radio" name="finalRecommendation" value="Not recommended at this stage" />
+            <span>Not recommended at this stage</span>
+          </label>
+        </div>
+        <p class="pill-legend">Use your overall judgment based on both quantitative &amp; qualitative feedback.</p>
+      </section>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button type="submit">
+          Download Evaluation CSV
+          <span>⬇️</span>
+        </button>
+        <p class="note">
+          On submit, a CSV file with this evaluation will be downloaded to your system. You can share it with HR or upload it to your records.
+        </p>
+      </div>
+      <div id="status" class="status" aria-live="polite"></div>
+    </form>
   </div>
 
-  <h2>2. Evaluation Parameters</h2>
-  <div class="grid-3">
+  <script>
+    // Hardcoded trainee data (from Sales Trainee Data.csv)
+    const trainees = [{"Employee Name": "Dharmender", "Emp ID": 8899, "Branch": "Noida A-88", "Mentor": "Nitin Kumar", "Buddy": "Shashank Verma"}, {"Employee Name": "M Sanjiv Gandhi", "Emp ID": 9767, "Branch": "Chennai West", "Mentor": "Jeevan Prakash", "Buddy": "Parthasarthi"}, {"Employee Name": "Sarath Babu Kamala Kannan", "Emp ID": 16698, "Branch": "Chennai South", "Mentor": "Swaminathan", "Buddy": "Vinoth Kumar"}, {"Employee Name": "Tippu Sultan", "Emp ID": 26504, "Branch": "Bangalore N801 To 802", "Mentor": "Kamalesh Kumar s", "Buddy": "MOHAMMED FOUZAN"}, {"Employee Name": "Vakiti Rahul Kishore", "Emp ID": 18607, "Branch": "Hyderabad,Vasavi Grand", "Mentor": "Mallipudi Virendranath", "Buddy": "V Kalyan Kumar"}, {"Employee Name": "Saikath Sen", "Emp ID": 14430, "Branch": "Kolkata Krishna Building 1", "Mentor": "Jit Banerjee", "Buddy": "Subhadip Das"}, {"Employee Name": "Surender Singh", "Emp ID": 19029, "Branch": "Gurgaon Sector-32", "Mentor": "Kunal Sharma", "Buddy": "Vinay Thakur"}, {"Employee Name": "Shailendra Singh", "Emp ID": 8937, "Branch": "Gurgaon Sector-32", "Mentor": "Kunal Sharma", "Buddy": "Ritik Jain"}, {"Employee Name": "Sunil Kumar", "Emp ID": 15238, "Branch": "Gurgaon Sector-74 A", "Mentor": "Trdev Karan", "Buddy": "Souvik Mandal"}, {"Employee Name": "Amandeep Singh", "Emp ID": 8885, "Branch": "New Delhi Pitampura", "Mentor": "Manmohan Goswami", "Buddy": "Vikrant Parashar"}, {"Employee Name": "Jitendra Singh", "Emp ID": 8914, "Branch": "Gurgaon Sector-32", "Mentor": "Kunal Sharma", "Buddy": "AMIT CHAWLA"}, {"Employee Name": "Sunil Kumar", "Emp ID": 8945, "Branch": "Noida A-88", "Mentor": "Nitin Kumar", "Buddy": "Aman Mishra"}, {"Employee Name": "Abhishek", "Emp ID": 9862, "Branch": "New Delhi Pitampura", "Mentor": "Manmohan Goswami", "Buddy": "Vikrant Parashar"}, {"Employee Name": "Atul Ramchandra Mali", "Emp ID": 8856, "Branch": "Mumbai Andheri - J B Nagar", "Mentor": "Nitesh Mewani", "Buddy": "Akash Varma"}, {"Employee Name": "Sunny Dayal Pandey", "Emp ID": 11723, "Branch": "Mumbai CBD Belapur", "Mentor": "Atul Raikwar", "Buddy": "Shrijay Baggal"}, {"Employee Name": "Jignesh Himmat Rathod", "Emp ID": 12242, "Branch": "Mumbai Andheri - J B Nagar", "Mentor": "Nitesh Mewani", "Buddy": "Amit Kawle"}, {"Employee Name": "Firoz Imran Khan", "Emp ID": 15951, "Branch": "Mumbai Andheri - J B Nagar", "Mentor": "Nitesh Mewani", "Buddy": "Vishal Chauhan"}, {"Employee Name": "Vishal Mhaske", "Emp ID": 9917, "Branch": "Pune Viman Nagar", "Mentor": "Rupesh Sabale", "Buddy": "Kumar Abhishek"}, {"Employee Name": "Akshay Sadanand Swami", "Emp ID": 17942, "Branch": "Pune Viman Nagar", "Mentor": "Shashi Ranjan", "Buddy": "Mahaveer Kothari"}, {"Employee Name": "Upender Kumar Pal", "Emp ID": 8940, "Branch": "South Delhi Office", "Mentor": "Ishan Tiwari", "Buddy": "Vishveshwar Singh"}, {"Employee Name": "Rakesh Kumar", "Emp ID": 8949, "Branch": "Noida A-88", "Mentor": "Nitin Kumar", "Buddy": "Shashank Verma"}, {"Employee Name": "Shekhar", "Emp ID": 18641, "Branch": "Ghaziabad Office", "Mentor": "Manish Sharma", "Buddy": "Aditya Gupta"}];
 
-    <!-- 1. Average meetings per day -->
-    <div class="form-item">
-      <label class="field-label">How many average meeting was the trainee able to do every day?</label>
-      <input type="number" name="avg_meetings_per_day" class="input" />
-    </div>
-
-    <!-- 2. Met meetings target? -->
-    <div class="form-item">
-      <label class="field-label">Did the trainee meet the meetings target?</label>
-      <div class="radio-row">
-        <label><input type="radio" name="met_meetings_target" value="Yes" /> Yes</label>
-        <label style="margin-left:12px"><input type="radio" name="met_meetings_target" value="No" /> No</label>
-      </div>
-    </div>
-
-    <!-- 3. Identify sales opportunity? -->
-    <div class="form-item">
-      <label class="field-label">Was the trainee able to identify sales opportunity during meetings?</label>
-      <div class="radio-row">
-        <label><input type="radio" name="identified_sales_opportunity" value="Yes" /> Yes</label>
-        <label style="margin-left:12px"><input type="radio" name="identified_sales_opportunity" value="No" /> No</label>
-      </div>
-    </div>
-
-    <!-- 4. Convert opportunity into sales? -->
-    <div class="form-item">
-      <label class="field-label">Was the trainee able to convert the opportunity into actual sales?</label>
-      <div class="radio-row">
-        <label><input type="radio" name="converted_opportunity_to_sales" value="Yes" /> Yes</label>
-        <label style="margin-left:12px"><input type="radio" name="converted_opportunity_to_sales" value="No" /> No</label>
-      </div>
-    </div>
-
-    <!-- 5. Aligned for long-term sales? -->
-    <div class="form-item">
-      <label class="field-label">Is the trainee aligned to do sales in the long run?</label>
-      <div class="radio-row">
-        <label><input type="radio" name="aligned_for_long_term_sales" value="Yes" /> Yes</label>
-        <label style="margin-left:12px"><input type="radio" name="aligned_for_long_term_sales" value="No" /> No</label>
-      </div>
-    </div>
-
-    <!-- Final Recommendation -->
-    <div class="form-item">
-      <label class="field-label">Final Recommendation: (Please select one)</label>
-      <select name="final_recommendation" class="input">
-        <option value="">Select</option>
-        <option>Ready for Sales Role</option>
-        <option>Ready with some support</option>
-        <option>Needs further training</option>
-        <option>Not recommended at this stage</option>
-      </select>
-    </div>
-
-  </div>
-
-  <br />
-  <button class="btn-primary" type="button" onclick="saveEval()">Save Evaluation</button>
-  <button class="btn-secondary" type="button" onclick="downloadAll()">Download All</button>
-
-  <div id="resultTable"></div>
-
-</div>
-
-<script>
-  // Hardcoded trainee data from your CSV
-  const trainees = [
-    {
-      "Employee Name": "Dharmender",
-      "Emp ID": 8899,
-      "Email ID": "dharmender.k@99acres.com",
-      "Location": "Noida",
-      "Branch": "Noida A-88",
-      "Mentor": "Nitin Kumar",
-      "Buddy": "Shashank Verma"
-    },
-    {
-      "Employee Name": "M Sanjiv Gandhi",
-      "Emp ID": 9767,
-      "Email ID": "m.gandhi@99acres.com",
-      "Location": "Chennai",
-      "Branch": "Chennai West",
-      "Mentor": "Jeevan Prakash",
-      "Buddy": "Parthasarthi"
-    },
-    {
-      "Employee Name": "Sarath Babu Kamala Kannan",
-      "Emp ID": 16698,
-      "Email ID": "",
-      "Location": "",
-      "Branch": "Chennai South",
-      "Mentor": "Swaminathan",
-      "Buddy": "Vinoth Kumar"
-    },
-    {
-      "Employee Name": "Chiranth Bangalore Venkatesh",
-      "Emp ID": 18708,
-      "Email ID": "chiranth.bv@99acres.com",
-      "Location": "Bangalore",
-      "Branch": "Bangalore Koramangala",
-      "Mentor": "Ragini",
-      "Buddy": "Pratheek Kumar"
-    },
-    {
-      "Employee Name": "Indrajit Kalita",
-      "Emp ID": 18656,
-      "Email ID": "indrajit.kalita@99acres.com",
-      "Location": "Guwahati",
-      "Branch": "Guwahati",
-      "Mentor": "Pranjal Saikia",
-      "Buddy": "Rohan Sarma"
-    },
-    {
-      "Employee Name": "Naveen Kumar V",
-      "Emp ID": 18780,
-      "Email ID": "naveen.v@99acres.com",
-      "Location": "Hyderabad",
-      "Branch": "Hyderabad",
-      "Mentor": "Naveen Nayak",
-      "Buddy": "Shivaji"
-    },
-    {
-      "Employee Name": "Pushpendra Singh",
-      "Emp ID": 18710,
-      "Email ID": "pushpendra.singh2@99acres.com",
-      "Location": "Noida",
-      "Branch": "Gurgaon Udyog Vihar",
-      "Mentor": "Karan Kumar",
-      "Buddy": "Sarthak"
-    },
-    {
-      "Employee Name": "Shanmathy R",
-      "Emp ID": 18716,
-      "Email ID": "shanmathy.r@99acres.com",
-      "Location": "Chennai",
-      "Branch": "Chennai North",
-      "Mentor": "Arun",
-      "Buddy": "Aravind"
-    },
-    {
-      "Employee Name": "Shubham Singh",
-      "Emp ID": 18711,
-      "Email ID": "shubham.singh7@99acres.com",
-      "Location": "Lucknow",
-      "Branch": "Lucknow",
-      "Mentor": "Rohit Singh",
-      "Buddy": "Prabhat"
-    },
-    {
-      "Employee Name": "Mukul Singh",
-      "Emp ID": 18709,
-      "Email ID": "mukul.singh@99acres.com",
-      "Location": "Noida",
-      "Branch": "Gurgaon Sector 44",
-      "Mentor": "Vineet",
-      "Buddy": "Akshay"
-    },
-    {
-      "Employee Name": "Sourav Kumar",
-      "Emp ID": 18714,
-      "Email ID": "sourav.kumar@99acres.com",
-      "Location": "Patna",
-      "Branch": "Patna",
-      "Mentor": "Vikash",
-      "Buddy": "Gaurav"
-    },
-    {
-      "Employee Name": "Ranjeet Kumar",
-      "Emp ID": 18712,
-      "Email ID": "ranjeet.kumar@99acres.com",
-      "Location": "Ranchi",
-      "Branch": "Ranchi",
-      "Mentor": "Ishan Tiwari",
-      "Buddy": "Vishveshwar Singh"
-    },
-    {
-      "Employee Name": "Rakesh Kumar",
-      "Emp ID": 8949,
-      "Email ID": "rakesh.kumar@99acres.com",
-      "Location": "New Delhi",
-      "Branch": "Noida A-88",
-      "Mentor": "Nitin Kumar",
-      "Buddy": "Shashank Verma"
-    },
-    {
-      "Employee Name": "Shekhar",
-      "Emp ID": 18641,
-      "Email ID": "shekhar@99Acres.com",
-      "Location": "Noida",
-      "Branch": "Ghaziabad Office",
-      "Mentor": "Manish Sharma",
-      "Buddy": "Aditya Gupta"
+    function populateTraineeDropdown() {
+      const select = document.getElementById("traineeName");
+      trainees.forEach((t) => {
+        const option = document.createElement("option");
+        option.value = t["Employee Name"];
+        option.textContent = t["Employee Name"];
+        select.appendChild(option);
+      });
     }
-  ];
 
-  const traineeSelect = document.getElementById("traineeSelect");
+    function onTraineeChange() {
+      const select = document.getElementById("traineeName");
+      const selectedName = select.value;
+      const trainee = trainees.find((t) => t["Employee Name"] === selectedName);
 
-  // Populate dropdown
-  trainees.forEach(t => {
-    const opt = document.createElement("option");
-    opt.value = t["Employee Name"];
-    opt.textContent = t["Employee Name"];
-    traineeSelect.appendChild(opt);
-  });
+      const employeeIdInput = document.getElementById("employeeId");
+      const branchInput = document.getElementById("branch");
+      const mentorInput = document.getElementById("mentor");
+      const buddyInput = document.getElementById("buddy");
 
-  // Auto-fill profile fields
-  traineeSelect.addEventListener("change", () => {
-    const t = trainees.find(x => x["Employee Name"] === traineeSelect.value);
-    if (!t) return;
-    document.getElementById("empid").textContent  = t["Emp ID"]   || "—";
-    document.getElementById("branch").textContent = t["Branch"]   || "—";
-    document.getElementById("mentor").textContent = t["Mentor"]   || "—";
-    document.getElementById("buddy").textContent  = t["Buddy"]    || "—";
-  });
-
-  function saveEval() {
-    const data = {
-      timestamp: new Date().toLocaleString(),
-      trainee: traineeSelect.value,
-      evaluator: document.getElementById("evaluator").value,
-      empid: document.getElementById("empid").textContent,
-      branch: document.getElementById("branch").textContent,
-      mentor: document.getElementById("mentor").textContent,
-      buddy: document.getElementById("buddy").textContent
-    };
-
-    document.querySelectorAll(".grid-3 input, .grid-3 textarea, .grid-3 select").forEach(el => {
-      if (!el.name) return;
-      if (el.type === "radio") {
-        if (el.checked) data[el.name] = el.value;
+      if (trainee) {
+        employeeIdInput.value = trainee["Emp ID"] ?? "";
+        branchInput.value = trainee["Branch"] ?? "";
+        mentorInput.value = trainee["Mentor"] ?? "";
+        buddyInput.value = trainee["Buddy"] ?? "";
       } else {
-        data[el.name] = el.value;
+        employeeIdInput.value = "";
+        branchInput.value = "";
+        mentorInput.value = "";
+        buddyInput.value = "";
       }
+    }
+
+    function escapeCsvValue(value) {
+      if (value == null) return "";
+      const str = String(value);
+      if (str.includes('"') || str.includes(",") || str.includes("\n")) {
+        return '"' + str.replace(/"/g, '""') + '"';
+      }
+      return str;
+    }
+
+    function buildCsvRow(values) {
+      return values.map(escapeCsvValue).join(",") + "\n";
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const statusEl = document.getElementById("status");
+      statusEl.textContent = "";
+      statusEl.className = "status";
+
+      if (!form.checkValidity()) {
+        statusEl.textContent = "Please fill all required fields before submitting.";
+        statusEl.classList.add("error");
+        return;
+      }
+
+      const data = new FormData(form);
+      const now = new Date();
+      const timestamp = now.toISOString();
+
+      const traineeName = data.get("traineeName") || "";
+      const employeeId = document.getElementById("employeeId").value || "";
+      const branch = document.getElementById("branch").value || "";
+      const mentor = document.getElementById("mentor").value || "";
+      const buddy = document.getElementById("buddy").value || "";
+
+      const evaluator = data.get("evaluator") || "";
+      const avgMeetings = data.get("avgMeetings") || "";
+      const metTarget = data.get("metTarget") || "";
+      const identifiedOpp = data.get("identifiedOpp") || "";
+      const convertedOpp = data.get("convertedOpp") || "";
+      const alignedLongTerm = data.get("alignedLongTerm") || "";
+      const strengths = data.get("strengths") || "";
+      const opportunities = data.get("opportunities") || "";
+      const finalRecommendation = data.get("finalRecommendation") || "";
+
+      const headers = [
+        "Timestamp",
+        "Trainee Name",
+        "Employee ID",
+        "Branch",
+        "Mentor",
+        "Buddy",
+        "Evaluator",
+        "Average Meetings per Day",
+        "Met Meetings Target",
+        "Identified Sales Opportunities",
+        "Converted Opportunities to Sales",
+        "Aligned for Sales Long-Term",
+        "Key Strengths",
+        "Key Opportunity Areas",
+        "Final Recommendation"
+      ];
+
+      const row = [
+        timestamp,
+        traineeName,
+        employeeId,
+        branch,
+        mentor,
+        buddy,
+        evaluator,
+        avgMeetings,
+        metTarget,
+        identifiedOpp,
+        convertedOpp,
+        alignedLongTerm,
+        strengths,
+        opportunities,
+        finalRecommendation
+      ];
+
+      const csvContent = buildCsvRow(headers) + buildCsvRow(row);
+
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+
+      const safeName = traineeName || "trainee";
+      const fileName =
+        "Sales_Trainee_Evaluation_" +
+        safeName.replace(/[^a-z0-9]+/gi, "_") +
+        "_" +
+        now.toISOString().slice(0, 10) +
+        ".csv";
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      statusEl.textContent = "Evaluation captured. A CSV file has been downloaded. You can now share it with HR.";
+      statusEl.classList.add("success");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      populateTraineeDropdown();
+      document.getElementById("traineeName").addEventListener("change", onTraineeChange);
+      document.getElementById("evaluationForm").addEventListener("submit", handleSubmit);
     });
-
-    const existing = JSON.parse(localStorage.getItem("evaluations") || "[]");
-    existing.push(data);
-    localStorage.setItem("evaluations", JSON.stringify(existing));
-
-    alert("Saved!");
-    renderTable();
-  }
-
-  function renderTable() {
-    const all = JSON.parse(localStorage.getItem("evaluations") || "[]");
-    const wrap = document.getElementById("resultTable");
-    if (!all.length) { wrap.innerHTML = ""; return; }
-    const keys = Object.keys(all[0]);
-
-    let html = "<table><thead><tr>";
-    keys.forEach(k => html += "<th>" + k + "</th>");
-    html += "</tr></thead><tbody>";
-
-    all.forEach(r => {
-      html += "<tr>";
-      keys.forEach(k => html += "<td>" + (r[k] || "") + "</td>");
-      html += "</tr>";
-    });
-
-    html += "</tbody></table>";
-    wrap.innerHTML = html;
-  }
-
-  function downloadAll() {
-    const all = JSON.parse(localStorage.getItem("evaluations") || "[]");
-    if (!all.length) { alert("No records saved."); return; }
-    const keys = Object.keys(all[0]);
-
-    const csv = [keys.join(",")]
-      .concat(all.map(r =>
-        keys.map(k => '"' + String(r[k] || "").replace(/"/g, '""') + '"').join(",")
-      ))
-      .join("\n");
-
-    const blob = new Blob([csv], { type:"text/csv" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "sales_trainee_evaluations.csv";
-    a.click();
-  }
-
-  renderTable();
-</script>
-
+  </script>
 </body>
 </html>
