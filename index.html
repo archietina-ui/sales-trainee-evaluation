@@ -160,37 +160,51 @@
     .actions {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       align-items: center;
       gap: 10px;
       margin-top: 8px;
     }
 
-    button[type="submit"] {
+    button {
       padding: 10px 20px;
       border-radius: 999px;
       border: none;
-      background: linear-gradient(135deg, #2563eb, #4f46e5);
-      color: #ffffff;
       font-size: 0.94rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
       transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
     }
 
-    button[type="submit"]:hover {
+    button.primary {
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    button.primary:hover {
       transform: translateY(-1px);
       box-shadow: 0 14px 26px rgba(37, 99, 235, 0.26);
       opacity: 0.96;
     }
 
-    button[type="submit"]:active {
+    button.primary:active {
       transform: translateY(0);
       box-shadow: 0 8px 16px rgba(37, 99, 235, 0.26);
+    }
+
+    button.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    button.secondary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
     }
 
     .note {
@@ -231,6 +245,10 @@
       h1 {
         font-size: 1.4rem;
       }
+      .actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -238,7 +256,7 @@
   <div class="page">
     <h1>Sales Trainee Evaluation</h1>
     <p class="subtitle">
-      Select a trainee to auto-fill their details, complete the evaluation, and download a ready-to-share CSV file.
+      Select a trainee to auto-fill their details, complete the evaluation, and submit. Once all evaluations are done, download a consolidated CSV.
     </p>
 
     <form id="evaluationForm">
@@ -411,12 +429,16 @@
 
       <!-- Actions -->
       <div class="actions">
-        <button type="submit">
-          Download Evaluation CSV
-          <span>⬇️</span>
+        <button type="submit" class="primary">
+          Submit Evaluation
         </button>
+
+        <button type="button" id="downloadAllBtn" class="secondary" disabled>
+          Download All Evaluations ⬇️
+        </button>
+
         <p class="note">
-          On submit, a CSV file with this evaluation will be downloaded to your system. You can share it with HR or upload it to your records.
+          Submit each trainee's evaluation. When you are done with all, click "Download All Evaluations" to get one consolidated CSV file.
         </p>
       </div>
       <div id="status" class="status" aria-live="polite"></div>
@@ -424,6 +446,9 @@
   </div>
 
   <script>
+    // Store all submitted evaluations in memory (for this browser session)
+    const allEvaluations = [];
+
     // Hardcoded trainee data
     const trainees = [
       {
@@ -705,24 +730,6 @@
       const opportunities = data.get("opportunities") || "";
       const finalRecommendation = data.get("finalRecommendation") || "";
 
-      const headers = [
-        "Timestamp",
-        "Trainee Name",
-        "Employee ID",
-        "Branch",
-        "Mentor",
-        "Buddy",
-        "Evaluator",
-        "Average Meetings per Day",
-        "Met Meetings Target",
-        "Identified Sales Opportunities",
-        "Converted Opportunities to Sales",
-        "Aligned for Sales Long-Term",
-        "Key Strengths",
-        "Key Opportunity Areas",
-        "Final Recommendation"
-      ];
-
       const row = [
         timestamp,
         traineeName,
@@ -741,16 +748,64 @@
         finalRecommendation
       ];
 
-      const csvContent = buildCsvRow(headers) + buildCsvRow(row);
+      // Save this evaluation
+      allEvaluations.push(row);
+
+      // Enable the "Download All" button
+      const downloadAllBtn = document.getElementById("downloadAllBtn");
+      downloadAllBtn.disabled = allEvaluations.length === 0;
+
+      // Clear form for next trainee
+      form.reset();
+      document.getElementById("employeeId").value = "";
+      document.getElementById("branch").value = "";
+      document.getElementById("mentor").value = "";
+      document.getElementById("buddy").value = "";
+
+      statusEl.textContent = "Evaluation saved. You can submit another trainee or download all evaluations.";
+      statusEl.classList.add("success");
+    }
+
+    function downloadAllEvaluations() {
+      const statusEl = document.getElementById("status");
+      statusEl.textContent = "";
+      statusEl.className = "status";
+
+      if (allEvaluations.length === 0) {
+        statusEl.textContent = "No evaluations to download yet.";
+        statusEl.classList.add("error");
+        return;
+      }
+
+      const headers = [
+        "Timestamp",
+        "Trainee Name",
+        "Employee ID",
+        "Branch",
+        "Mentor",
+        "Buddy",
+        "Evaluator",
+        "Average Meetings per Day",
+        "Met Meetings Target",
+        "Identified Sales Opportunities",
+        "Converted Opportunities to Sales",
+        "Aligned for Sales Long-Term",
+        "Key Strengths",
+        "Key Opportunity Areas",
+        "Final Recommendation"
+      ];
+
+      let csvContent = buildCsvRow(headers);
+      allEvaluations.forEach(row => {
+        csvContent += buildCsvRow(row);
+      });
 
       const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
 
-      const safeName = traineeName || "trainee";
+      const now = new Date();
       const fileName =
-        "Sales_Trainee_Evaluation_" +
-        safeName.replace(/[^a-z0-9]+/gi, "_") +
-        "_" +
+        "Sales_Trainee_Evaluations_ALL_" +
         now.toISOString().slice(0, 10) +
         ".csv";
 
@@ -762,7 +817,7 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      statusEl.textContent = "Evaluation captured. A CSV file has been downloaded. You can now share it with HR.";
+      statusEl.textContent = "CSV downloaded with all saved evaluations.";
       statusEl.classList.add("success");
     }
 
@@ -770,6 +825,7 @@
       populateTraineeDropdown();
       document.getElementById("traineeName").addEventListener("change", onTraineeChange);
       document.getElementById("evaluationForm").addEventListener("submit", handleSubmit);
+      document.getElementById("downloadAllBtn").addEventListener("click", downloadAllEvaluations);
     });
   </script>
 </body>
